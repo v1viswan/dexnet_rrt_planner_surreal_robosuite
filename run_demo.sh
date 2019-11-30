@@ -1,0 +1,1 @@
+python3 example_policy.py GQCNN-4.0-PJ --depth_image test_dataset/depth_0.npy --segmask test_dataset/seg.png --camera_intr data/calib/primesense/primesense.intr

@@ -124,7 +124,7 @@ if __name__ == "__main__":
     # Set model if provided.
     if model_dir is None:
         model_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                 "../models")
+                                 "models")
     model_path = os.path.join(model_dir, model_name)
 
     # Get configs.
@@ -156,21 +156,21 @@ if __name__ == "__main__":
                 or gripper_mode == GripperMode.PARALLEL_JAW):
             if fully_conv:
                 config_filename = os.path.join(
-                    os.path.dirname(os.path.realpath(__file__)), "..",
+                    os.path.dirname(os.path.realpath(__file__)), 
                     "cfg/examples/fc_gqcnn_pj.yaml")
             else:
                 config_filename = os.path.join(
-                    os.path.dirname(os.path.realpath(__file__)), "..",
+                    os.path.dirname(os.path.realpath(__file__)), 
                     "cfg/examples/gqcnn_pj.yaml")
         elif (gripper_mode == GripperMode.LEGACY_SUCTION
               or gripper_mode == GripperMode.SUCTION):
             if fully_conv:
                 config_filename = os.path.join(
-                    os.path.dirname(os.path.realpath(__file__)), "..",
+                    os.path.dirname(os.path.realpath(__file__)),
                     "cfg/examples/fc_gqcnn_suction.yaml")
             else:
                 config_filename = os.path.join(
-                    os.path.dirname(os.path.realpath(__file__)), "..",
+                    os.path.dirname(os.path.realpath(__file__)), 
                     "cfg/examples/gqcnn_suction.yaml")
 
     # Read config.
@@ -183,7 +183,7 @@ if __name__ == "__main__":
         policy_config["metric"]["gqcnn_model"] = model_path
         if not os.path.isabs(policy_config["metric"]["gqcnn_model"]):
             policy_config["metric"]["gqcnn_model"] = os.path.join(
-                os.path.dirname(os.path.realpath(__file__)), "..",
+                os.path.dirname(os.path.realpath(__file__)), 
                 policy_config["metric"]["gqcnn_model"])
 
     # Setup sensor.
@@ -267,7 +267,7 @@ if __name__ == "__main__":
         vis.imshow(rgbd_im.depth,
                    vmin=policy_config["vis"]["vmin"],
                    vmax=policy_config["vis"]["vmax"])
-        vis.grasp(action.grasp, scale=2.5, show_center=False, show_axis=True)
+        vis.grasp(action.grasp, scale=1, show_center=True, show_axis=True)
         vis.title("Planned grasp at depth {0:.3f}m with Q={1:.3f}".format(
             action.grasp.depth, action.q_value))
         vis.show()
