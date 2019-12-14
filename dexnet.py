@@ -60,7 +60,8 @@ class DexNet(object):
         self.model_dir = 'models'
         self.model_name = model_name
         self.model_path = os.path.join(self.model_dir, self.model_name)
-        self.camera_intr_filename = 'data/calib/primesense/primesense.intr'
+        # self.camera_intr_filename = 'data/calib/sim/simcamera.intr'
+        self.camera_intr_filename = 'data/calib/phoxi/phoxi.intr'
         # "cfg/examples/fc_gqcnn_suction.yaml"
         self.config_filename = "cfg/examples/gqcnn_pj.yaml"
         self.fully_conv = False
@@ -163,7 +164,7 @@ class DexNet(object):
         print('Action depth: {}'.format(action.grasp.depth))  
         return action
 
-    def visualization(self, action, rgbd_im):
+    def visualization(self, action, rgbd_im, offset, scale):
         # Vis final grasp.
         if self.policy_config["vis"]["final_grasp"]:
             vis.figure(size=(10, 10))
@@ -172,5 +173,5 @@ class DexNet(object):
                        vmax=self.policy_config["vis"]["vmax"])
             vis.grasp(action.grasp, scale=2.5, show_center=True, show_axis=True)
             vis.title("Planned grasp at depth {0:.3f}m with Q={1:.3f}".format(
-                action.grasp.depth, action.q_value))
+                action.grasp.depth * scale + offset, action.q_value))
             vis.savefig('test_dataset/grasp.png')

@@ -87,7 +87,6 @@ if __name__ == "__main__":
     print("compute camera matrix: ")
     print(np.array(((f, 0, width / 2), (0, f, height / 2), (0, 0, 1))))
 
-
     # world.viewer.distance = world.model.extent * 0.5
     # env.mode = 'human'
     # env.viewer.set_camera(0)
